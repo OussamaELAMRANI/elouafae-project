@@ -1,0 +1,22 @@
+<table class="ui very basic table">
+  <thead>
+    <tr>
+      <th>N° inventaire</th>
+      <th>Affecter au</th>
+      <th>N° de Perte</th>
+      <th>Date de Perte</th>
+      <th class="six wide">justification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let art of inv">
+      <td>{{art.nInventory}}</td>
+      <td>
+        <a class="ui tag label teal" *ngFor="let post of art.affected">{{post}}</a>
+      </td>
+      <td>{{art.lossNumber}}</td>
+      <td>{{art.lossDate}}</td>
+      <td>{{art.justification}}</td>
+    </tr>
+  </tbody>
+</table>

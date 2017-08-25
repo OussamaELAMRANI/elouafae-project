@@ -1,0 +1,23 @@
+{
+  "name": "ng-client",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Oussama <oussama1elamrani@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/assets/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic": "semantic-ui#^2.2.11",
+    "semantic-ui-calendar": "^0.0.8",
+    "toastr": "^2.1.3"
+  }
+}

@@ -1,0 +1,15 @@
+<div class="ui container" *ngIf="user">
+  <div class="ui message positive">
+    <ol>
+      <li>{{user._id}}</li>
+      <li>{{user.firstName}}</li>
+      <li>{{user.lastName}}</li>
+      <li>{{user.username}}</li>
+      <li>{{user.password}}</li>
+      <li>{{user.group}}</li>
+      <li>{{user.active}}</li>
+      <li>{{user.createdAt}}</li>
+      <li>{{user.updatedAt}}</li>
+    </ol>
+  </div>
+</div>

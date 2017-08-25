@@ -1,0 +1,235 @@
+<div class="ui container">
+  <div class="ui grid">
+    <div class="row">
+      <div class="ui sixteen wide column">
+        <div class="ui three steps">
+          <div class=" step" [ngClass]=" {'active' : next[0]} ">
+            <i class="cube icon"></i>
+            <div class="content">
+              <div class="title">Inventaires</div>
+              <div class="description">Modifier L'entête D'Inventaire</div>
+            </div>
+          </div>
+          <div class=" step" [ngClass]=" {'active' : next[1]} ">
+            <i class="cubes icon"></i>
+            <div class="content">
+              <div class="title">Détail</div>
+              <div class="description">Modifier Détails D'Inventaires</div>
+            </div>
+          </div>
+          <div class="step" [ngClass]=" {'active' : next[2]} ">
+            <i class="info icon"></i>
+            <div class="content">
+              <div class="title">Fin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <form class="ui form" (ngSubmit)="save()" [formGroup]="editInv">
+
+    <div class="ui segments" *ngIf="next[0]">
+      <div class="ui segment red">
+        <div class="ui grid">
+          <div class="ui sixteen wide column">
+            <div class="field">
+              <label for="">Designation</label>
+              <div class="ui corner labeled input fluid large">
+                <input type="text" placeholder="Designation..." formControlName='design'>
+                <div class="ui corner label">
+                  <i class="asterisk icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="ui eight wide column">
+            <div class="field">
+              <label for="">Codage </label>
+              <div class="ui corner labeled input fluid large">
+                <input type="text" placeholder="Codage GetIDFroDB..." formControlName="cadage">
+                <div class="ui corner label">
+                  <i class="asterisk icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="ui eight wide column">
+            <div class="field">
+              <label for="">Valeur Initialle</label>
+              <div class="ui right labeled fluid input">
+                <input type="number" placeholder="valeur initialle .." formControlName="vInitial" />
+                <div class="ui basic label">DH</div>
+              </div>
+            </div>
+          </div>
+          <div class="ui eight wide column">
+            <div class="field">
+              <label for="">Valeur Actualle</label>
+              <div class="ui right labeled fluid input">
+                <input type="number" placeholder="valeur Actualle .." formControlName="vActuel" />
+                <div class="ui basic label">DH</div>
+              </div>
+            </div>
+          </div>
+          <div class="ui eight wide column">
+            <div class="field">
+              <label for="">Date d'Entrer</label>
+              <div class="ui right labeled fluid input">
+                <my-date-picker [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
+              </div>
+            </div>
+          </div>
+          <div class="ui eight wide column">
+            <div class="field">
+              <label for="">Duree de Vie</label>
+              <div class="ui right labeled fluid input">
+                <div class="ui right labeled fluid input">
+                  <input type="number" placeholder="Nombre d'annees' .." formControlName="nbrLife" />
+                  <div class="ui olive label">Ans</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui segment clearing teal">
+        <div class="ui sixteen wide column">
+          <div class="ui buttons right floated">
+            <button type="" class="ui submit button teal" (click)="nextStep(0)">Enregister</button>
+            <div class="or" data-text="Et"></div>
+            <a class="ui button green" (click)="nextStep(1)"> Suivant</a>
+          </div>
+        </div>
+        <div class="ui bottom attached progress">
+          <div class="bar"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui segments" *ngIf="next[1]">
+
+      <div class="ui segment green">
+        <!--List nInventory-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">N Inventaires </label>
+            <select class="ui dropdown fluid large" formControlName="source">
+                  <option value="" disabled>Choisissez la Source ...</option>
+                  <option value="don">1</option>
+                  <option value="INDH">2</option>
+                  <option value="Complexe ELWAFAE">3</option>
+                  <option value="STE Nord Protection">5</option>
+                  <option value="autre">Autre</option>
+              </select>
+          </div>
+        </div>
+        <!--Orgine place-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">Existe Dans</label>
+            <div class="ui corner labeled input fluid large">
+              <input type="text" placeholder="Autre ..." formControlName="oldSource">
+              <div class="ui corner teal label">
+                <i class="map icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Move it place-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">Déplacer dans </label>
+            <select class="ui dropdown fluid large" formControlName="source">
+                  <option value="" disabled>Choisissez la Source ...</option>
+                  <option value="don">don</option>
+                  <option value="INDH">INDH</option>
+                  <option value="Complexe ELWAFAE">Complexe ELWAFAE</option>
+                  <option value="STE Nord Protection">STE Nord Protection</option>
+                  <option value="autre">Autre</option>
+				        </select>
+          </div>
+        </div>
+        <!--Onther place-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">Autre place </label>
+            <div class="ui corner labeled input fluid large">
+              <input type="text" placeholder="Codage GetIDFroDB..." formControlName="otherPlace">
+              <div class="ui corner label">
+                <i class="building icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--nPerte-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <!--*ngIf="autrePlace"-->
+            <label for="">N° de Perte</label>
+            <div class="ui corner labeled input large fluid">
+              <div class="ui corner orange label">
+                <i class="icon plus"></i>
+              </div>
+              <input type="text" placeholder="N perte .." formControlName="nPerte">
+            </div>
+          </div>
+        </div>
+        <!--loss's Date' -->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">Date de Perte</label>
+            <div class="ui right labeled fluid input">
+              <my-date-picker [options]="myDatePickerOptions" formControlName="perteDate"></my-date-picker>
+            </div>
+          </div>
+        </div>
+        <!--Justification-->
+        <div class="ui sixteen wide column">
+          <div class="ui form">
+            <div class="field">
+              <label for="">Justification</label>
+              <textarea cols="30" rows="10" placeholder="Qu'est ce que se passe ? ..." formControlName="justif"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Buttons-->
+      <div class="ui segment clearing teal">
+        <div class="ui sixteen wide column">
+          <div class="ui buttons right floated">
+            <button type="" class="ui submit button teal" (click)="nextStep(0)">precédant</button>
+            <div class="or" data-text="Et"></div>
+            <a class="ui button green" (click)="nextStep(2)"> Suivant</a>
+          </div>
+        </div>
+        <div class="ui bottom attached progress">
+          <div class="bar"></div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="ui segments" *ngIf="next[2]">
+    <div class="ui segment clearing teal">
+      <h2 class="ui header">
+        DONE :D
+      </h2>
+      <div class="ui sixteen wide column">
+        <div class="ui buttons right floated">
+          <button type="" class="ui submit button teal" (click)="nextStep(1)">precédant</button>
+          <div class="or" data-text="Et"></div>
+          <a class="ui button green" (click)="nextStep(2)"> Suivant</a>
+        </div>
+      </div>
+      <div class="ui bottom attached progress">
+        <div class="bar"></div>
+      </div>
+    </div>
+  </div>
+</div>

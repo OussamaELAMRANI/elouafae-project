@@ -1,0 +1,68 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "ng-client"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "../public",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "dar",
+      "styles": [
+        "assets/vendor/semantic/dist/semantic.min.css",
+        "assets/vendor/semantic-ui-calendar/dist/calendar.min.css",
+        "assets/vendor/sweetalert/dist/sweetalert.css",
+        "assets/vendor/toastr/toastr.min.css",
+        "styles.scss"
+      ],
+      "scripts": [
+        "assets/vendor/jquery/dist/jquery.min.js",
+        "assets/vendor/semantic/dist/semantic.min.js",
+        "assets/vendor/semantic-ui-calendar/dist/calendar.min.js",
+        "assets/vendor/sweetalert/dist/sweetalert.min.js",
+        "assets/vendor/toastr/toastr.min.js",
+        "assets/js/script.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "scss",
+    "component": {}
+  }
+}

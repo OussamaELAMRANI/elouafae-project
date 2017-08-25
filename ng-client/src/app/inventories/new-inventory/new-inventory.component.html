@@ -1,0 +1,261 @@
+<div class="ui container">
+  <form class="ui form" (ngSubmit)="save()" [formGroup]="newInvGroup">
+    <h1 class="ui center aligned header teal">
+      <i class="icon new"></i>Ajouter Nouveau Inventaire</h1>
+    <div class="ui section divider" id="separator"></div>
+
+    <div class="ui teal segment">
+      <div class="ui grid">
+        <!--img Upload-->
+        <div class="ui four wide column">
+          <input type="file" ng2FileSelect [uploader]="uploader" />
+        </div>
+        <div class="ui eleven wid column">
+          <table class="ui table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Progress</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of uploader.queue">
+
+                <td><strong>{{ item.file?.name }}</strong></td>
+                <td nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                <!--<td>
+                <div class="progress" style="margin-bottom: 0;">
+                  <!-<div class="progress-bar" role="progressbar" </div>-->
+                <!--<div class="ui indicating tiny progress" [ngStyle]="{ 'width': item.progress + '%' }">
+                    <div class="bar"></div>
+                    <div class="label">Funding</div>
+                  </div>
+                </div>-->
+                <!--</td>
+              <td class="text-center">
+                <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>-->
+                <!--</td>-->
+                <!--<td nowrap>
+                <button type="button" class="btn btn-success btn-xs" (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                            <span class="glyphicon glyphicon-upload"></span> Upload
+                        </button>
+                <button type="button" class="btn btn-warning btn-xs" (click)="item.cancel()" [disabled]="!item.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                        </button>
+                <button type="button" class="btn btn-danger btn-xs" (click)="item.remove()">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+              </td>-->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--Designation-->
+        <div class="ui sixteen wide column">
+          <div class="field">
+            <label for="">Designation</label>
+            <div class="ui corner labeled input fluid large">
+              <input type="text" placeholder="Designation..." formControlName='design'>
+              <div class="ui corner label">
+                <i class="asterisk icon"></i>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!--Source-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">Source</label>
+            <select class="ui dropdown fluid large" formControlName="source" (click)="injcSource()">
+						<option value="" disabled>Choisissez la Source ...</option>
+						<option value="{{src.source}}" *ngFor="let src of srcs" >{{src.source}}</option>
+						<!--<option value="don">don</option>
+						<option value="INDH">INDH</option>
+						<option value="Complexe ELWAFAE">Complexe ELWAFAE</option>
+						<option value="STE Nord Protection">STE Nord Protection</option>-->
+						<option value="autre">Autre</option>
+				  </select>
+          </div>
+        </div>
+        <!--otherSource-->
+        <div class="ui eight wide column">
+          <div class="field" *ngIf="autreSource">
+            <label for="">Autre Source</label>
+            <div class="ui corner labeled input fluid large">
+              <input type="text" placeholder="Autre ..." formControlName="autreSource">
+              <div class="ui corner green label">
+                <i class="plus icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Codage-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">Codage </label>
+            <div class="ui corner labeled input fluid large">
+              <input type="number" placeholder="Codage GetIDFroDB..." formControlName="codage">
+              <div class="ui corner label">
+                <i class="asterisk icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--EnterDate-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">Date d'Entrer</label>
+            <div class="ui right labeled fluid input">
+              <my-date-picker [options]="myDatePickerOptions" formControlName="enterDate"></my-date-picker>
+            </div>
+          </div>
+        </div>
+
+        <!--LifeTime-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">Durée de Vie</label>
+            <div class="ui right labeled fluid input">
+              <div class="ui right labeled fluid input">
+                <input type="number" placeholder="Nombre d'annees' .." formControlName="lifeTime" />
+                <div class="ui label">An(s)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--ExitDate-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">Date de Sortie</label>
+            <div class="ui right labeled fluid input">
+              <my-date-picker [options]="myDatePickerOptions" formControlName="exitDate"></my-date-picker>
+            </div>
+          </div>
+        </div>
+        <!--initial Value-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">Valeur Initialle</label>
+            <div class="ui right labeled fluid input">
+              <input type="number" placeholder="valeur initialle .." formControlName="vInitial" />
+              <div class="ui basic label">DH</div>
+            </div>
+          </div>
+        </div>
+        <!--Actuel Value-->
+        <div class="ui eight wide column">
+          <div class="field">
+            <label for="">Valeur Actualle</label>
+            <div class="ui right labeled fluid input">
+              <input type="number" placeholder="valeur Actualle .." formControlName="vActuel" />
+              <div class="ui basic label">DH</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="ui segment teal">
+      <div class="ui section divider" id="separator"></div>
+      <h2 class="ui header teal">Detail des articles ...</h2>
+
+      <div formArrayName="invs" *ngFor="let inv of inventories.controls; let i=index">
+        <div [formGroupName]="i">
+          <div class="ui grid">
+            <div class="ui eight wide column">
+              <div class="field">
+                <label for="{{'nInv'+ i}}">N inventaire {{i}}"</label>
+                <div class="ui corner labeled input large fluid">
+                  <input type="number" placeholder="N inventaire de .." formControlName="nInventory" id="{{'iInv'+ i}}">
+                  <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ui eight wide column">
+              <div class="field">
+                <label for="">Nombre de pièce</label>
+                <div class="ui corner labeled input large fluid">
+                  <input type="text" placeholder="nombre ..." formControlName="nInvfinal">
+                  <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ui eight wide column">
+              <div class="field">
+                <label for="">Affecter au  </label>
+                <select class="ui dropdown fluid large" formControlName="affecterAu">
+              <option value="" disabled>Affecter au </option>
+              <option value="Cuisine" *ngFor="let plc of places">{{plc.place}}</option>
+              <!--<option value="Salle Mange">Salle a mange</option>
+              <option value="Sale Info">Salle Informatique</option>
+              <option value="Bureau N 10">Bureau N 10</option>
+              <option value="Bureau N 11">Bureau N 11</option>
+              <option value="Bureau N 12">Bureau N 12</option>-->
+              <option value="autre">Autre</option>
+			        </select>
+              </div>
+            </div>
+            <div class="ui eight wide column">
+              <div class="field" *ngIf="autrePlace[i]">
+                <!--*ngIf="autrePlace"-->
+                <label for="">Autre place </label>
+                <div class="ui corner labeled input large fluid">
+                  <div class="ui corner green label">
+                    <i class="icon plus"></i>
+                  </div>
+                  <input type="text" placeholder="Autre ..." formControlName="autrePlaces">
+                </div>
+              </div>
+            </div>
+            <div class="ui horizontal divider">
+              <i class="puzzle icon"></i> Ajouter un Autre
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ui sixteen wide column">
+        <button class="circular ui green icon button" (click)="addInv()" [disabled]="!inventories.valid">
+            <i class="icon plus"></i>
+        </button>
+        <button class="circular ui red icon button" (click)="removeInv()" [disabled]="inventories.length <= 1">
+            <i class="icon trash"></i>
+        </button>
+        <button class="circular ui  icon button" (click)="restInv()">
+            <i class="icon refresh"></i>
+        </button> invs valid : {{inventories.length | json}}
+      </div>
+    </div>
+
+    <div class="ui segment clearing red">
+      <div class="ui sixteen wide column">
+
+        <div class="ui buttons right floated">
+          <button type="submit" class="ui submit button teal">Enregister</button>
+          <div class="or" data-text="Ou"></div>
+          <a class="ui button red" [routerLink]="['/inventory']"> Annuler</a>
+        </div>
+      </div>
+      <div class="ui bottom attached progress" [ngStyle]="{ 'width': uploader.progress + '%' }">
+        <div class="bar"></div>
+      </div>
+    </div>
+  </form>
+</div>
+<br>
+
+
+<!--<ol>
+  <li>{{newInvGroup.value | json}}</li>
+</ol>-->

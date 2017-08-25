@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "ignore": ["ng-client/**/*", "public/**/*"]
+}

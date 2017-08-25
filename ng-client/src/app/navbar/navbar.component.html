@@ -1,0 +1,21 @@
+<div class="ui inverted menu">
+  <div class="header item">
+    Complexe Al ouafae
+  </div>
+  <div class="right menu">
+    <a class="item" [routerLink]="['/']">Accueil</a>
+    <a class="item" [routerLink]="['/inventory']" *ngIf="usersService.loggedIn()">Inventaires</a>
+    <a class="item " [routerLink]="['/dashboard']" routerLinkActive="teal active" *ngIf="usersService.loggedIn()">Dashboard</a>
+    <a class="item " [routerLink]="['/profile']" routerLinkActive="teal active" *ngIf="usersService.loggedIn()">profile</a>
+    <a class="item" [routerLink]="['/login']" routerLinkActive="teal active" *ngIf="!usersService.loggedIn()">Log In</a>
+    <a class="item" [routerLink]="['/sign-up']" routerLinkActive="teal active" *ngIf="!usersService.loggedIn()">Sign Up</a>
+    <a class="item" href="#" (click)="onLogOut()" routerLinkActive="teal active" *ngIf="usersService.loggedIn()">logOut</a>
+  </div>
+</div>
+<!--{{usersService.loggedIn()}}-->
+<!-- +++++++Dashboard Navigation +++++++ -->
+<!--<div class="ui inverted vertical fixed labeled icon menu" id="left-menu">-->
+<!--<a [routerLink]="['/dashboard']" routerLinkActive="teal active" class="item"><i class="icon dashboard"></i>Tableau de bord</a>
+    <a [routerLink]="['/login']" routerLinkActive="teal active" class="item"><i class="icon refresh"></i>Actualiser</a>
+    <a [routerLink]="['/usr/sign-up']" routerLinkActive="teal active" class="item"><i class="icon add user"></i> Ajouter Utilisateur</a>
+  </div>-->

@@ -1,0 +1,79 @@
+.large.breadcrumb {
+  margin: 30px;
+}
+
+.inventory-box {
+  height: 130px;
+
+& .content-date {
+  & .iDate {
+    margin-bottom: 10px;
+
+    &> a {
+      margin-left: 11px;
+    }
+  }
+
+}
+  & .iValue {
+    margin-bottom: 10px;
+  }
+
+  & .source{
+    margin-bottom: 6px;
+    &>a {
+      margin-left: 30px;
+    }
+  }
+
+ & .content-codage{
+    text-align: center;
+    border-left: 3px solid red;
+    background-color: #FFF0F5;
+    // &>.ui.vertical.divider{
+    //   left: 0;
+    // }
+    h2 {
+      font-size: 36px;
+    }
+ }
+}
+
+#date-item {
+  padding-left: 3px;
+}
+
+#filter-menu {
+  // overflow: scroll;
+  width: 240px;
+  transition: right .5s;
+}
+
+.content {
+    max-width: 1160px;
+    margin: 0 auto;
+    & .ui.raised.segment {
+       border-left: 4px solid #9627BA;
+    }
+}
+
+#bar-actions{
+  margin-top: -10px;
+  a {
+    margin-top: 10px;
+  }
+}
+
+#filter-range {
+  width: 50px;
+  height: 50px;
+  background-color: #9627BA;
+  position: fixed;
+  right: 240px;
+  font-size: 30px;
+  color: white;
+  text-align: center;
+  padding: 11px;
+  box-shadow: 1px 1px 5px gray;
+  transition: right .5s;
+}

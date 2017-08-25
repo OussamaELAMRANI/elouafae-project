@@ -1,0 +1,46 @@
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+      <div class="ui teal image header">
+        <img src="assets/images/login.svg" class="image">
+        <div class="content">
+          Log-in au votre propre compte
+        </div>
+      </div>
+
+      <form class="ui form" (ngSubmit)="login()" [formGroup]="LoginGroup" novalidate>
+
+      <div class="ui stacked segment">
+        <div class="field" [ngClass]="{'error' : ((LoginGroup.get('username').touched || LoginGroup.get('username').dirty ) && LoginGroup.get('username').errors)}">
+          <div class="ui large left icon input">
+            <i class="user icon"></i>
+            <input type="text" placeholder="enter votre username ..." formControlName="username">
+          </div>
+        </div>
+        <div class="field" [ngClass]="{'error' : ((LoginGroup.get('password').touched || LoginGroup.get('password').dirty ) && LoginGroup.get('password').errors)}">
+          <div class="ui large left icon input">
+            <i class="lock icon"></i>
+            <input type="password" placeholder="mot de passe" formControlName="password">
+          </div>
+        </div>
+        <button class="ui fluid large teal submit button" type="submit" [disabled]="!LoginGroup.valid">Login</button>
+      </div>
+
+      </form>
+      <div class="ui error message">
+        <li *ngIf="((LoginGroup.get('username').touched || LoginGroup.get('username').dirty ) && LoginGroup.get('username').errors) ">
+          Vous devez saisir votre username/Login !
+        </li>
+        <li *ngIf="((LoginGroup.get('password').touched || LoginGroup.get('password').dirty ) && LoginGroup.get('password').errors) ">
+          Vous devez saisir votre Mot de passe !
+        </li>
+         <li *ngIf="msg">
+            {{msg}}
+        </li>
+      </div>
+
+      <div class="ui message">
+        demande d'autentification <br>
+        <a [routerLink]="['/sign-up']">Sign Up !</a>
+      </div>
+    </div>
+</div>

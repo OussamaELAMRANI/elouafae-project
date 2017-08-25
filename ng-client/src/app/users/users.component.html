@@ -1,0 +1,53 @@
+<!--<div class="ui container">
+  <table class="ui table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Login</th>
+        <th>mot de passe</th>
+        <th>active</th>
+        <th>Groupes</th>
+        <th>Creer en</th>
+        <th>modifier en</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{user.lastName}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.active}}</td>
+        <td>{{user.group}}</td>
+        <td>{{user.createdAt}}</td>
+        <td>{{user.updatedAt}}</td>
+        <td>
+          <a  (click)="alertBro()" type="button" class="ui button icon red"> <i class="trash  icon"></i></a>
+          <a [routerLink]="['/usr/detail/',user.id]" type="button" class="ui button icon blue"> <i class="folder open  icon"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>-->
+<div class="ui left fixed inverted vertical pointing menu">
+  <div class="header item">
+    Complexe Al ouafae
+  </div>
+  <a class="item" [routerLink]="['/usr']" routerLinkActive="teal active" routerlinkActiveOptions="{exact:true}">
+    <div class="ui small red label">2</div>
+    <i class="gamepad icon"></i> Home
+  </a>
+  <a class="item" [routerLink]="['/usr/users-list/']" routerLinkActive="teal active" routerlinkActiveOptions="{exact:true}">
+    <div class="ui small red label">2</div>
+    <i class="envelope icon"></i> Messages
+  </a>
+  <a class="item">
+    <div class="ui small red label">2</div>
+    <i class="favorite icon"></i> Friends
+  </a>
+</div>
+
+<!--<router-outlet></router-outlet>-->

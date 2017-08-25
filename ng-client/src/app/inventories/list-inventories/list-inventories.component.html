@@ -1,0 +1,139 @@
+<div class="ui large breadcrumb">
+  <a class="section">Accueil</a>
+  <i class="right chevron icon divider"></i>
+  <a class="section">tableau de bord</a>
+  <i class="right chevron icon divider"></i>
+  <a class="section" [routerLink]="['/inventory']">Listes d'inventaires</a>
+  <i class="right chevron icon divider"></i>
+  <div class="active section">Codage: <strong>{{inv?.codage}}</strong></div>
+</div>
+
+<div class="ui segments orange">
+  <div class="ui segment raised">
+    <table class="ui teal table">
+      <thead>
+        <tr>
+          <th>Codage</th>
+          <th class="five wide">Designation</th>
+          <th>source</th>
+          <th>date enter</th>
+          <th>date Sortie</th>
+          <th>Valeur initial</th>
+          <th>Valeur Actuelle</th>
+          <th>Actions</th>
+        </tr>
+        <tr class="selectable warning">
+          <td>{{inv?.codage}}</td>
+          <td>{{inv?.design}}</td>
+          <td>{{inv?.source}}</td>
+          <td>{{inv?.enteredAt}}</td>
+          <td>{{inv?.exitAt}}</td>
+          <td>{{inv?.initialValue}} DH</td>
+          <td>{{inv?.actualValue}} DH</td>
+          <td>
+            <div class="ui labeled button" tabindex="0" (click)="addDetail(1)">
+              <div class="ui blue button">
+                <i class="table icon"></i> Liste
+              </div>
+              <a class="ui basic blue left pointing label" [routerLink]="['/inventory']">148</a>
+            </div>
+            <button class="circular ui red icon inverted button"><i class="icon trash"></i></button>
+            <button class="circular ui green icon inverted button" (click)="addDetail(0)"><i class="icon plus" ></i></button>
+          </td>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="ui red segment" *ngIf="list">
+    <dar-list-details [inv]="inv?.details"></dar-list-details>
+  </div>
+  <form class="ui form" (ngSubmit)="save()" [formGroup]="detailGroup">
+    <div class="ui container " *ngIf="!list">
+      <div class="ui red segment">
+        <div class="ui grid">
+          <div class="ui sixteen wide column">
+            <div class="field">
+              <label for="">N° d'Inventaire</label>
+              <div class="ui corner labeled input  large fluid">
+                <input type="text" placeholder="N inventaire de .." formControlName="nInventory">
+                <div class="ui corner green label">
+                  <i class="icon asterisk"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui eight wide column">
+            <div class="field">
+              <label for="">Affecter au  </label>
+              <select class="ui dropdown fluid large" formControlName="affecterAu">
+              <option value="" disabled>Affecter au </option>
+              <option value="don">cousine</option>
+              <option value="INDH">Salle a mange</option>
+              <option value="Complexe ELWAFAE">Salle Informatique</option>
+              <option value="STE Nord Protection">Bureau N 10</option>
+              <option value="autre">Autre</option>
+			        </select>
+            </div>
+          </div>
+          <div class="ui eight wide column">
+            <div class="field">
+              <!--*ngIf="autrePlace"-->
+              <label for="">Autre place </label>
+              <div class="ui corner labeled input large fluid">
+                <div class="ui corner green label">
+                  <i class="icon plus"></i>
+                </div>
+                <input type="text" placeholder="Autre ..." formControlName="autrePlaces">
+              </div>
+            </div>
+          </div>
+          <div class="ui eight wide column">
+            <div class="field">
+              <!--*ngIf="autrePlace"-->
+              <label for="">N° de Perte</label>
+              <div class="ui corner labeled input large fluid">
+                <div class="ui corner orange label">
+                  <i class="icon plus"></i>
+                </div>
+                <input type="text" placeholder="N perte .." formControlName="nPerte">
+              </div>
+            </div>
+          </div>
+          <div class="ui eight wide column">
+            <div class="field">
+              <label for="">Date de Perte</label>
+              <div class="ui right labeled fluid input">
+                <my-date-picker [options]="myDatePickerOptions" formControlName="perteDate"></my-date-picker>
+              </div>
+            </div>
+          </div>
+
+          <div class="ui sixteen wide column">
+            <div class="ui form">
+              <div class="field">
+                <label for="">Justification</label>
+                <textarea cols="30" rows="10" placeholder="Qu'est ce que se passe ? ..." formControlName="justif"></textarea>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="ui segment clearing red">
+        <div class="ui sixteen wide column">
+
+          <div class="ui buttons right floated">
+            <button type="submit" class="ui submit button teal">Enregister</button>
+            <div class="or" data-text="Ou"></div>
+            <a class="ui button red" [routerLink]="['/inventory']"> Annuler</a>
+          </div>
+        </div>
+        <div class="ui bottom attached progress" style="width: 80%">
+          <div class="bar"></div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <br>
+</div>

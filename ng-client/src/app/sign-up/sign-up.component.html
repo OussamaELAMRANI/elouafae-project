@@ -1,0 +1,129 @@
+<div class="ui container">
+  <div class="ui grid">
+    <div class="ui sixteen wide column">
+
+      <!-- ++++ ALERT +++++++++++-->
+      <div class="ui icon green message">
+        <i class="icon idea"></i>
+        <div class="content">
+          <div class="header">Il Faut Remplire tout les champs</div>
+          <p>On va prendre en considération cette demande, S'il vous plait attendez l'acceptation de l'administrateur :)</p>
+        </div>
+      </div>
+      <!-- ++++ FIN ALERT +++++++++++-->
+
+      <form class="ui form" (ngSubmit)="save()" [formGroup]="signUpGroup" novalidate>
+        <div class="ui segment stacked raised red">
+          <h3 class="ui dividing header teal">{{title}}</h3>
+          <div class="ui grid">
+            <div class="ui eight wide column">
+              <div class="field" [ngClass]="{'error' : ((signUpGroup.get('lastName').touched || signUpGroup.get('lastName').dirty ) && signUpGroup.get('lastName').errors)}">
+                <label for="nom">Nom </label>
+                <div class="ui corner labeled input large fluid">
+                  <input type="text" id="nom" placeholder="Saisie votre Nom" formControlName="lastName">
+                  <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ui eight wide column">
+              <div class="field" [ngClass]="{'error' : ((signUpGroup.get('firstName').touched || signUpGroup.get('firstName').dirty ) && signUpGroup.get('firstName').errors)}">
+                <label for="prenom">Prénom </label>
+                <div class="ui corner labeled input large fluid">
+                  <input type="text" id="prenom" placeholder="Saisie votre Prénom" formControlName="firstName">
+                  <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--+++++++++ USERNAME +++++++++-->
+            <div class="ui sixteen wide column">
+              <div class="field" [ngClass]="{'error' : ((signUpGroup.get('username').touched || signUpGroup.get('username').dirty ) && signUpGroup.get('username').errors)}">
+                <label for="login">username </label>
+                <div class="ui corner labeled input large fluid">
+                  <input type="text" id="login" placeholder="Saisie votre Login" formControlName="username">
+                  <div class="ui corner label">
+                    <i class="icon asterisk"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--+++++++++ PASSWORD +++++++++-->
+            <div formGroupName="password" class="ui sixteen wide column field" [ngClass]="{'error' : signUpGroup.get('password').errors }">
+              <div class="ui eight wide column">
+                <div class="field" [ngClass]="{'error' : ((signUpGroup.get('password.password_1').touched || signUpGroup.get('password.password_1').dirty ) && signUpGroup.get('password.password_1').errors)}">
+                  <label for="psswd">Mot de passe </label>
+                  <div class="ui corner labeled input large fluid">
+                    <input type="password" id="psswd" placeholder="votre mot de passe" formControlName="password_1">
+                    <div class="ui corner label">
+                      <i class="icon asterisk"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="ui eight wide column">
+                <div class="field" [ngClass]="{'error' : ((signUpGroup.get('password.password_2').touched || signUpGroup.get('password.password_2').dirty ) && (signUpGroup.get('password.password_2').errors || signUpGroup.get('password').errors ))}">
+                  <label for="repsswd">répetez le mot de passe</label>
+                  <div class="ui corner labeled input large fluid">
+                    <input type="password" id="repsswd" placeholder="répetez votre mot de passe" formControlName="password_2">
+                    <div class="ui corner label">
+                      <i class="icon asterisk"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--+++++++++ BUTTONS +++++++++-->
+            <div class="ui sixteen wide column">
+              <div class="ui buttons right floated">
+                <button type="submit" class="ui submit button teal" [disabled]="!signUpGroup.valid"> Enregistrer</button>
+                <div class="or" data-text="Ou"></div>
+                <button (click)="testData()" type="button" class="ui button red"> Annuler</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </form>
+      <!--+++++ ALERT BOTOOM-->
+      <div class="ui bottom attached message error ">
+        <!--<i class="icon warning"></i>-->
+        <div class="content">
+          <!--<div class="header">vous avez des Erreur !</div>-->
+          <ol>
+            <li *ngIf="((signUpGroup.get('lastName').touched || signUpGroup.get('lastName').dirty ) && signUpGroup.get('lastName').errors) ">
+              Vous devez ajouter votre Nom !
+            </li>
+            <li *ngIf="((signUpGroup.get('firstName').touched || signUpGroup.get('firstName').dirty ) && signUpGroup.get('firstName').errors) ">
+              Vous devez ajouter votre prénom !
+            </li>
+            <li *ngIf="((signUpGroup.get('username').touched || signUpGroup.get('username').dirty ) && signUpGroup.get('username').errors) ">
+              Vous devez ajouter votre username/Login !
+            </li>
+            <li *ngIf="((signUpGroup.get('password.password_1').touched || signUpGroup.get('password.password_1').dirty ) && signUpGroup.get('password.password_1').errors) ">
+              Vous devez ajouter votre Mot de passe !
+            </li>
+            <li *ngIf="((signUpGroup.get('password.password_2').touched || signUpGroup.get('password.password_2').dirty ) && signUpGroup.get('password.password_2').errors) ">
+              Vous devez repéter votre Mot de passe !
+            </li>
+            <li *ngIf=" signUpGroup.get('password').errors ">
+              le mot de passe incorrect !
+            </li>
+            <!--<li>Dirty: {{signUpGroup.dirty}}</li>
+            <li>Touched: {{signUpGroup.touched}}</li>
+            <li>Valid: {{signUpGroup.valid}}</li>
+            <li>Value: {{signUpGroup.value | json}}</li>-->
+          </ol>
+        </div>
+      </div>
+      <div class="ui message " [ngClass]="message.success ? 'positive' : 'error' " >
+        {{message.msg}}
+        {{message.success}}
+      </div>
+    </div>
+
+  </div>
+</div>

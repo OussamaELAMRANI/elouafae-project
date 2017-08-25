@@ -1,0 +1,28 @@
+.container {
+  margin-top: 15px;
+  padding-left: 15px;
+
+  &> .grid {
+    margin-left: 60px;
+    margin-right: -60px;
+  }
+}
+ div#dash {
+   box-shadow: 1px 1px 10px;
+ }
+
+.card{
+  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  text-align:center;
+  color:#f3f3f3;
+  & >.image>img {
+    width: 128px;
+    /* text-align: center; */
+    margin: 40px auto;
+  }
+  // &> .text-carte{
+  //   margin: 10px;
+  //   font-size:30px;
+
+  // }
+}
